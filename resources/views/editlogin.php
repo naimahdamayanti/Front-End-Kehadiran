@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Reset Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
@@ -94,25 +94,19 @@
 </head>
 <body>
     <div class="login-container">
-        <h3>Login</h3>
-        <form action="login" method="POST">
+        <h3>Reset Login</h3>
+        <form action="editlogin" method="POST">
             @csrf
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username Baru" required>
             </div>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Password Baru" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100">Reset Login</button>
         </form>
-        <p class="forgot-password">
-            <a href="{{ route('login') }}">Lupa Password?</a>
-        </p>
-        <p class="text-center">
-            Belum Punya Akun? <a href="{{ route('signup') }}">Sign Up</a>
-        </p>
     </div>
 </body>
 </html>

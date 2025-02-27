@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\login;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -19,12 +20,11 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'username' => ['required'],
-            'password' => ['required'],
+            'pass' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
             return redirect()->route('dashboard');
         }
 
@@ -40,4 +40,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken(); // Regenerate the session token
         return redirect()->route('login'); // Redirect to the login page
     }
+
+    
 }

@@ -94,9 +94,25 @@
 </head>
 <body>
     <div class="login-container">
-        <h3>Login</h3>
-        <form action="login" method="POST">
+        <h3>Sign Up</h3>
+        <form action="signup" method="POST">
             @csrf
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Tahun Masuk" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            </div>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
@@ -105,14 +121,8 @@
                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                 <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
         </form>
-        <p class="forgot-password">
-            <a href="{{ route('login') }}">Lupa Password?</a>
-        </p>
-        <p class="text-center">
-            Belum Punya Akun? <a href="{{ route('signup') }}">Sign Up</a>
-        </p>
     </div>
 </body>
 </html>
