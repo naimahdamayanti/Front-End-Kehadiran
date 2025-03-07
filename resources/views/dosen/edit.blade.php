@@ -2,20 +2,27 @@
 @section('title','Edit Dosen')
 @section('judul','Form Edit Dosen')
 @section('isi')
-    <form action="{{ route('dosen.update', $dosen->id_dosen) }}" method="post">
-        @csrf
-        <div class="form-group mb-2">
-          <label>Nama Dosen</label>
-      <input value="{{ $dosen->nama_dosen }}" type="text" name="nama_dosen" 
-          class="form-control">
-        </div>
-        </div>
-      
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit">Save</button>
-        </div>
-    </form>
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('dosen.update', $dosen->id_dosen) }}" method="POST">
+            @csrf
+            @method('PUT') <!-- Gunakan method PUT untuk update -->
 
+            <div class="mb-3">
+                <label for="id_dosen" class="form-label">ID Dosen</label>
+                <input type="text" class="form-control" id="id_dosen" name="id_dosen" value="{{ $dosen->id_dosen }}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="nama_dosen" class="form-label">Nama Dosen</label>
+                <input type="text" class="form-control" id="nama_dosen" name="nama_dosen" value="{{ $dosen->nama_dosen }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{{ route('dosen.index') }}" class="btn btn-secondary">Kembali</a>
+        </form>
+    </div>
+</div>
 
 
     {{--  javascript untuk validasi form bootstrap di atas  --}}

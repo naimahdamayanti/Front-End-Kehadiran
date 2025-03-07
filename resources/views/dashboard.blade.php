@@ -11,7 +11,7 @@
             <div class="col-8">
               <div class="numbers">
                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Dosen</p>
-              <h1></h1>
+                <h1>{{ \App\Models\Dosen::count() }}</h1>
               <a class="stretched-link" href="dosen">Detail..</a>
               </div>
               </div>
@@ -31,7 +31,7 @@
             <div class="col-8">
               <div class="numbers">
                   <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Mahasiswa</p>
-                  <h1></h1>
+                  <h1>{{ \App\Models\Mahasiswa::count() }}</h1>
                   <a class="stretched-link" href="mahasiswa">Detail..</a>
                   </div>
                   </div>
@@ -51,7 +51,7 @@
             <div class="col-8">
               <div class="numbers">
                   <p class="text-sm mb-0 text-uppercase font-weight-bold">Mata Kuliah</p>
-                  <h1></h1>
+                  <h1>{{ \App\Models\Matkul::count() }}</h1>
                   <a class="stretched-link" href="matkul">Detail..</a>
                   </div>
                   </div>
@@ -71,7 +71,7 @@
             <div class="col-8">
               <div class="numbers">
                   <p class="text-sm mb-0 text-uppercase font-weight-bold">Daftar Hadir</p>
-                  <h1></h1>
+                  <h1>{{ \App\Models\Absensi::count() }}</h1>
                   <a class="stretched-link" href="absensi">Detail..</a>
                   </div>
                   </div>

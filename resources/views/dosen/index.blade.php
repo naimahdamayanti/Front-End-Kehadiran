@@ -29,29 +29,31 @@
   </button>
 </a>
   <div class="table-responsive">
-      <table class="table table-striped table-sm">
+      <table class="table table-striped table-bordered table-layout-fixed">
           <thead>
               <tr>
-                <th scope="col">No.</th>
-                <th scope="col">ID Dosen</th>
-                <th scope="col">Nama Dosen </th>
-                <th scope="col">Aksi</th>
+                <th scope="col" class="text-center w-auto">No.</th>
+                <th scope="col" class="text-center w-auto">ID Dosen</th>
+                <th scope="col" class="text-center w-auto">Nama Dosen </th>
+                <th scope="col" class="text-center w-auto">Aksi</th>
               </tr>
           </thead>
           <tbody>
               @foreach ($dosen as $data)
               <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $data['id_dosen'] }}</td>
-                  <td>{{ $data['nama_dosen'] }}</td>
+                  <td class="text-center w-auto">{{ $loop->iteration }}</td>
+                  <td class="text-center w-auto">{{ $data['id_dosen'] }}</td>
+                  <td class="text-center w-auto">{{ $data['nama_dosen'] }}</td>
                   
-                  <td>
-                      <a href="{{ url('dosen/edit/'.$data['id_dosen']) }}">
-                          <button class="btn btn-primary">EDIT</button>
+                  <td class="text-center ">
+                      <a href="{{ route('dosen.edit', $data['id_dosen']) }}">
+                          <button class="btn btn-primary text">EDIT</button>
                       </a>
-                      <a href="{{ url('dosen/destroy/'.$data['id_dosen'])}}">
-                        <button class="btn btn-danger">HAPUS</button>
-                    </a>
+                      <form action="{{ route('dosen.destroy', $data['id_dosen']) }}" method="POST" style="display: inline;">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">HAPUS</button>
+                      </form>
                   </td>
               </tr>   
               @endforeach

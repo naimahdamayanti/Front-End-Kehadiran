@@ -76,7 +76,13 @@ class DosenController extends Controller
 
     public function destroy($id)
     {
-        Dosen::findOrFail($id)->delete();
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus.');
+        $response = Http::delete("http://localhost:8080/Dosen/{$id}");
+
+        // Cek respons dari API
+        if ($response->successful()) {
+            return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus.');
+        } else {
+            return redirect()->route('dosen.index')->with('error', 'Gagal menghapus data dosen.');
+        }
     }
 }

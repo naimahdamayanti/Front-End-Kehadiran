@@ -8,9 +8,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DosenController;
-
-use App\Models\Matkul;
-use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
@@ -37,6 +34,11 @@ Route::get('/dashboard',function(){
 Route::get('/layout',function(){
   return view('layout');
 });
+
+// Route::get('/dosen/edit/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
+// Route::get('/mahasiswa/edit/{npm}', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
+// Route::put('/mahasiswa/update/{npm}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
+// Route::get('/matkul/{matkul}/edit', [MatkulController::class, 'edit'])->name('matkul.edit');
 
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('matkul', MatkulController::class);

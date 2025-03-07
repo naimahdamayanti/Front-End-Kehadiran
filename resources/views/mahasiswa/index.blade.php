@@ -29,36 +29,38 @@
   </button>
 </a>
 <div class="table-responsive">
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-bordered table-layout-fixed">
           <thead>
               <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">NPM</th>
-                 <th scope="col">Nama Mahasiswa</th>
-                <th scope="col">Mata Kuliah</th>
-                <th scope="col">Jurusan</th>
-                <th scope="col">Prodi</th>
-                <th scope="col">Tahun Akademik</th>
-                <th scope="col">Aksi</th>
+                  <th scope="col" class="text-center w-auto">No</th>
+                  <th scope="col" class="text-center w-auto">NPM</th>
+                 <th scope="col" class="text-center w-auto">Nama Mahasiswa</th>
+                <th scope="col" class="text-center w-auto">Mata Kuliah</th>
+                <th scope="col" class="text-center w-auto">Jurusan</th>
+                <th scope="col" class="text-center w-auto">Prodi</th>
+                <th scope="col" class="text-center w-auto">Tahun Akademik</th>
+                <th scope="col" class="text-center w-auto">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach($mahasiswa as $data)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->npm }}</td>
-                <td>{{ $data->nama_mahasiswa }}</td>
-                <td>{{ $data->nama_matkul }}</td>
-                <td>{{ $data->jurusan }}</td>
-                <td>{{ $data->prodi }}</td>
-                <td>{{ $data->tahun_akademik }}</td>
-                <td>
-                      <a href="{{ url('mahasiswa/edit/'.$data->id) }}">
+                <td class="text-center w-auto">{{ $loop->iteration }}</td>
+                <td class="text-center w-auto">{{ $data->npm }}</td>
+                <td class="text-center w-auto">{{ $data->nama_mahasiswa }}</td>
+                <td class="text-center w-auto">{{ $data->nama_matkul }}</td>
+                <td class="text-center w-auto">{{ $data->jurusan }}</td>
+                <td class="text-center w-auto">{{ $data->prodi }}</td>
+                <td class="text-center w-auto">{{ $data->tahun_akademik }}</td>
+                <td class="text-center w-auto">
+                      <a href="{{ route ('mahasiswa.edit', $data->npm) }}">
                           <button class="btn btn-primary">EDIT</button>
                       </a>
-                      <a href="{{ url('mahasiswa/destroy/'.$data->id)}}">
-                        <button class="btn btn-danger">HAPUS</button>
-                    </a>
+                      <form action="{{ route('mahasiswa.destroy', $data['npm']) }}" method="POST" style="display: inline;">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">HAPUS</button>
+                      </form>
                   </td>
             </tr>
             @endforeach

@@ -48,8 +48,6 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
 
-       
-
     // Kirim data ke API
     $response = Http::post('http://localhost:8080/Mahasiswa', [
          'npm' => $request->npm,
@@ -82,24 +80,58 @@ class MahasiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $npm)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($npm);
+        return view('mahasiswa.edit', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $npm)
     {
-        //
+        
+
+        $request->validate([
+            'npm' => 'required|integer',
+            'nama_mahasiswa' => 'required|string',
+            'nama_matkul' => 'required|string',
+            'jurusan' => 'required|string',
+            'prodi' => 'required|string',
+            'tahun_akademik' => 'required|string',
+        ]);
+    
+        // Kirim data ke API untuk update
+        $response = Http::put("http://localhost:8080/Mahasiswa/{$npm}", [
+            'npm' => $request->npm,
+            'nama_mahasiswa' => $request->nama_mahasiswa,
+            'nama_matkul' => $request->nama_matkul,
+            'jurusan' => $request->jurusan,
+            'prodi' => $request->prodi,
+            'tahun_akademik' => $request->tahun_akademik,
+        ]);
+        if ($response->successful()) {
+            return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil diperbarui.');
+        } else {
+            // Tampilkan pesan error dari API
+            $errorMessage = $response->json()['message'] ?? 'Gagal memperbarui data mahasiswa. Silakan coba lagi.';
+            return back()->with('error', $errorMessage);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $npm)
     {
-        //
+        $response = Http::delete("http://localhost:8080/Mahasiswa/{$npm}");
+
+        // Cek respons dari API
+        if ($response->successful()) {
+            return redirect()->route('mahasiswa.index')->with('success', 'Dosen berhasil dihapus.');
+        } else {
+            return redirect()->route('mahasiswa.index')->with('error', 'Gagal menghapus data dosen.');
+        }
     }
 }
