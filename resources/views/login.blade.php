@@ -111,7 +111,7 @@
             <a href="{{ route('login') }}">Lupa Password?</a>
         </p>
         <p class="text-center">
-            Belum Punya Akun? <a href="{{ route('signup') }}">Sign Up</a>
+            Belum Punya Akun? <a href="">Sign Up</a>
         </p>
     </div>
 </body>
