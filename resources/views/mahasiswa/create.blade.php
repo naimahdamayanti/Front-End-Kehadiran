@@ -31,19 +31,16 @@
         </div>
         <div class="form-group mb-2">
                     <label for="validationCustom01" class="form-label">Prodi</label>
-                    <select value=" {{ old('prodi')}}" class="form-control " name="prodi">
+                    <select class="form-control " name="prodi" required>
                     <option value="">--Pilih Prodi--</option>
-                    <option value="TI">D3 Teknik Informatika</option>
-                    <option value="TE">D3 Teknik Elektro</option>
-                    <option value="TL">D3 Teknik Listrik</option>
-                    <option value="TM">D3 Teknik Mesin</option>
-                    <option value="ALKS">D4 ALKS</option>
-                    <option value="RKS">D4 RKS</option>
-                    <option value="TRM">D4 TRM</option>
-                    <option value="MEKATRO">D4 Mekatronika</option>
-                    <option value="TRET">D4 TRET</option>
-                    <option value="PPA">D4 PPA</option>
-                    <option value="TPPL">D4 TPPL</option>
+                    <option value="D3 TI">D3 TI</option>
+                    <option value="D3 ELEKTRO">D3 ELEKTRO</option>
+                    <option value="D3 LISTRIK">D3 LISTRIK</option>
+                    <option value="D4 TRET">D4 TRET</option>
+                    <option value="D4 ALKS">D4 ALKS</option>
+                    <option value="D4 RKS">D4 RKS</option>
+                    <option value="D4 PPA">D4 PPA</option>
+                    <option value="D4 TPPL">D4 TPPL</option>
                     </select>
             </div>
         <div class="form-group mb-2">

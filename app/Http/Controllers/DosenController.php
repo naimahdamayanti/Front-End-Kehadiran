@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use Illuminate\Validation\Rule;
@@ -10,8 +11,10 @@ class DosenController extends Controller
 {
     public function index()
     {
-        $dosen = Dosen::all();
-        return view('dosen.index', compact('dosen'));
+
+        $response = Http::get('http://localhost:8080/Dosen');
+        $dosen = $response->json();
+        return view ('dosen.index', compact('dosen'));
     }
 
     public function create()
@@ -28,12 +31,16 @@ class DosenController extends Controller
             'nama_dosen' => 'required|string|max:255',
         ]);
 
-        Dosen::create([
+        $response = Http::post('http://localhost:8080/Dosen', [
             'id_dosen' => $request->id_dosen,
             'nama_dosen' => $request->nama_dosen,
         ]);
 
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil ditambahkan.');
+        if ($response->successful()) {
+            return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil ditambahkan.');
+            } else {
+                return redirect()->route('dosen.index')->with('error', 'Gagal menambahkan data dosen.');
+                }
     }
 
     public function show($id)
@@ -51,20 +58,31 @@ class DosenController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_dosen' => 'required',
+            'nama_dosen' => 'required|string|max:255',
         ]);
+    
 
-        $dosen = Dosen::findOrFail($id);
-        $dosen->update([
+        $response = Http::put("http://localhost:8080/Dosen/{$id}", [
             'nama_dosen' => $request->nama_dosen,
         ]);
-
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil diperbarui.');
+    
+        // Cek respons dari API
+        if ($response->successful()) {
+            return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil diperbarui.');
+        } else {
+            return redirect()->route('dosen.index')->with('error', 'Gagal memperbarui data dosen.');
+        }
     }
 
     public function destroy($id)
     {
-        Dosen::findOrFail($id)->delete();
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus.');
+        $response = Http::delete("http://localhost:8080/Dosen/{$id}");
+
+        // Cek respons dari API
+        if ($response->successful()) {
+            return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus.');
+        } else {
+            return redirect()->route('dosen.index')->with('error', 'Gagal menghapus data dosen.');
+        }
     }
 }

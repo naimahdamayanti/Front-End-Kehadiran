@@ -1993,7 +1993,7 @@ progress {
 }
 
 .table-sm > :not(caption) > * > * {
-  padding: 0.25rem 0.25rem;
+  padding: 1rem 1rem;
 }
 
 .table-bordered > :not(caption) > * {

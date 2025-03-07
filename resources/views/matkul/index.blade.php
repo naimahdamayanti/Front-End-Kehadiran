@@ -28,32 +28,34 @@
     <span class="btn-inner--text">Tambah Mata Kuliah</span>
   </button>
 </a>
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-bordered table-layout-fixed">
           <thead>
               <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">ID Mata Kuliah</th>
-                 <th scope="col">Nama Mata Kuliah</th>
-                <th scope="col">SKS</th>
-                <th scope="col">Semester</th>
-                <th scope="col">Aksi</th>
+                  <th scope="col" class="text-center w-auto">No</th>
+                  <th scope="col" class="text-center w-auto">ID Mata Kuliah</th>
+                 <th scope="col" class="text-center w-auto">Nama Mata Kuliah</th>
+                <th scope="col" class="text-center w-auto">SKS</th>
+                <th scope="col" class="text-center w-auto">Semester</th>
+                <th scope="col" class="text-center w-auto">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach($matkul as $data)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->id_matkul }}</td>
-                <td>{{ $data->nama_matkul }}</td>
-                <td>{{ $data->sks }}</td>
-                <td>{{ $data->semester }}</td>
-                <td>
-                      <a href="{{ url('matkul/edit/'.$data->id) }}">
+                <td class="text-center">{{ $loop->iteration }}</td>
+                <td class="text-center">{{ $data->id_matkul }}</td>
+                <td class="text-center">{{ $data->nama_matkul }}</td>
+                <td class="text-center">{{ $data->sks }}</td>
+                <td class="text-center">{{ $data->semester }}</td>
+                <td class="text-center">
+                      <a href="{{ route ('matkul.edit', $data->id_matkul) }}">
                           <button class="btn btn-primary">EDIT</button>
                       </a>
-                      <a href="{{ url('matkul/destroy/'.$data->id)}}">
-                        <button class="btn btn-danger">HAPUS</button>
-                    </a>
+                      <form action="{{ route('matkul.destroy', $data['id_matkul']) }}" method="POST" style="display: inline;">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">HAPUS</button>
+                      </form>
                   </td>
             </tr>
             @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use App\Models\Absensi;
 use App\Models\Mahasiswa;
 use App\Models\Matkul;
@@ -16,8 +17,9 @@ class AbsensiController extends Controller
     public function index()
     {
         
-        $absensi = Absensi::all();
-        return view('absensi.index', compact('absensi'));
+        $response = Http::get('http://localhost:8080/Absensi');
+        $absensi = $response->json();
+        return view ('absensi.index', compact('absensi'));
     }
 
     /**
@@ -25,11 +27,7 @@ class AbsensiController extends Controller
      */
     public function show($id)
     {
-        $matkul = Matkul::findOrFail($id);
-        $mahasiswa = Mahasiswa::where('id_matkul', $id)->get(); // Perbaikan where
-        dd(Matkul::find($id));
-
-        return view('absensi.show', compact('matkul', 'mahasiswa'));
+        
     }
 
     /**

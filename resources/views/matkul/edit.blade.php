@@ -4,6 +4,7 @@
 @section('isi')
 <form action="{{ route('matkul.update', $matkul->id_matkul) }}" method="post">
         @csrf
+        @method('PUT')
         <div class="form-group mb-2">
           <label>Nama Mata Kuliah</label>
             <input value="{{ $matkul->nama_matkul }}" type="text" name="nama_matkul" 
