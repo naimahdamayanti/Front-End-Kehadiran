@@ -26,7 +26,7 @@ Route::get('/welcome', function (){
     return view('welcome');
 });
 
-Route::resource('mahasiswa', MahasiswaController::class);
+
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -38,9 +38,9 @@ Route::get('/layout',function(){
   return view('layout');
 });
 
-
+Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('matkul', MatkulController::class);
-
+Route::resource('absensi', AbsensiController::class);
 Route::resource('dosen', DosenController::class);
 
 
@@ -48,4 +48,3 @@ Route::get('/login', [LoginController::class, 'login_form'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::resource('absensi', AbsensiController::class);

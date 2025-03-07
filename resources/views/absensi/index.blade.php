@@ -44,16 +44,16 @@
             @foreach($absensi as $data)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->id_kehadiran }}</td>
-                <td>{{ $data->npm }}</td>
-                <td>{{ $data->id_dosen }}</td>
-                <td>{{ $data->pertemuan }}</td>
-                <td>{{ $data->keterangan }}</td>
+                <td>{{ $data['id_kehadiran'] }}</td>
+                <td>{{ $data['npm'] }}</td>
+                <td>{{ $data['id_dosen'] }}</td>
+                <td>{{ $data['pertemuan'] }}</td>
+                <td>{{ $data['keterangan'] }}</td>
                 <td>
-                      <a href="{{ url('absensi/edit/'.$data->id) }}">
+                      <a href="{{ url('absensi/edit/'.$data['id_kehadiran']) }}">
                           <button class="btn btn-primary">EDIT</button>
                       </a>
-                      <a href="{{ url('absensi/destroy/'.$data->id)}}">
+                      <a href="{{ url('absensi/destroy/'.$data['id_kehadiran'])}}">
                         <button class="btn btn-danger">HAPUS</button>
                     </a>
                   </td>

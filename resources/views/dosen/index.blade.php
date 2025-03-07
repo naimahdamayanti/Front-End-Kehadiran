@@ -34,22 +34,22 @@
               <tr>
                 <th scope="col">No.</th>
                 <th scope="col">ID Dosen</th>
-                  <th scope="col">Nama Dosen </th>
-                  <th scope="col">Aksi</th>
+                <th scope="col">Nama Dosen </th>
+                <th scope="col">Aksi</th>
               </tr>
           </thead>
           <tbody>
               @foreach ($dosen as $data)
               <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $data->id_dosen }}</td>
-                  <td>{{ $data->nama_dosen }}</td>
+                  <td>{{ $data['id_dosen'] }}</td>
+                  <td>{{ $data['nama_dosen'] }}</td>
                   
                   <td>
-                      <a href="{{ url('dosen/edit/'.$data->id) }}">
+                      <a href="{{ url('dosen/edit/'.$data['id_dosen']) }}">
                           <button class="btn btn-primary">EDIT</button>
                       </a>
-                      <a href="{{ url('dosen/destroy/'.$data->id)}}">
+                      <a href="{{ url('dosen/destroy/'.$data['id_dosen'])}}">
                         <button class="btn btn-danger">HAPUS</button>
                     </a>
                   </td>

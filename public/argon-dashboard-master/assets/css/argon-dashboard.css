@@ -2496,7 +2496,8 @@ progress {
 }
 
 .table-sm> :not(caption)>*>* {
-  padding: 0.25rem 0.25rem;
+  padding: 0.1rem 0.1rem;
+  width: 100%;
 }
 
 .table-bordered> :not(caption)>* {
